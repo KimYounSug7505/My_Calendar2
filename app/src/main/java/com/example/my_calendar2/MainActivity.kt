@@ -2,6 +2,7 @@ package com.example.my_calendar2
 
 
 import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -11,7 +12,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 import java.text.SimpleDateFormat
 import java.util.*
 
-class MainActivity : AppCompatActivity() {
+open class MainActivity : AppCompatActivity() {
 
     lateinit var scheduleRecyclerViewAdapter: RecyclerViewAdapter
 
@@ -31,6 +32,12 @@ class MainActivity : AppCompatActivity() {
         rv_schedule.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.HORIZONTAL))
         rv_schedule.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
 
+
+        rv_schedule.setOnClickListener{
+            var nextIntent:Intent=Intent(this,input_diary::class.java)
+            startActivity(nextIntent)
+        }
+
         tv_prev_month.setOnClickListener {
             scheduleRecyclerViewAdapter.changeToPrevMonth()
         }
@@ -38,6 +45,11 @@ class MainActivity : AppCompatActivity() {
         tv_next_month.setOnClickListener {
             scheduleRecyclerViewAdapter.changeToNextMonth()
         }
+        tv_weekly.setOnClickListener{
+            var nextIntent:Intent= Intent(this,WeeklyCalendar::class.java)
+            startActivity(nextIntent)
+        }
+
     }
 
     fun refreshCurrentMonth(calendar: Calendar) {
