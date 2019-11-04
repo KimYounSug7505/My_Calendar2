@@ -13,4 +13,4 @@ import kotlinx.android.extensions.LayoutContainer
 /*
  * Created by KimYounSug750 on 25/09/2019.
  */
-open class Module_Helper(override val containerView: View) : RecyclerView.ViewHolder(containerView), LayoutContainer
+open class ModuleHelper(override val containerView: View) : RecyclerView.ViewHolder(containerView), LayoutContainer

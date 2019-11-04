@@ -1,15 +1,11 @@
 package com.example.my_calendar2
 
 
-import android.content.Context
 import android.content.Intent
-import android.icu.text.Transliterator
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.GridView
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.activity_main.*
 import java.text.SimpleDateFormat
 import java.util.*
@@ -29,16 +25,11 @@ open class MainActivity : AppCompatActivity() {
 
         scheduleRecyclerViewAdapter = RecyclerViewAdapter(this)
 //////////////////////////////////////////////////////////////////////////////
-        rv_schedule.layoutManager =  GridLayoutManager(this, Module_Base.DAYS_OF_WEEK)
+        rv_schedule.layoutManager =  GridLayoutManager(this, ModuleBase.DAYS_OF_WEEK)
+        rv_schedule.adapter = scheduleRecyclerViewAdapter
         rv_schedule.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.HORIZONTAL))
         rv_schedule.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
 //////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-        rv_schedule.setOnClickListener{
-            val nextIntent=Intent(this,input_diary::class.java)
-            startActivity(nextIntent)
-        }
 
         tv_prev_month.setOnClickListener {
             scheduleRecyclerViewAdapter.changeToPrevMonth()

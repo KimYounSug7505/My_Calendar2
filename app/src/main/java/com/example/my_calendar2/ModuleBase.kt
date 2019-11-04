@@ -4,7 +4,7 @@ import java.util.*
 /**
  * Created by KimYounSug750 on 2019/09/25
  */
-class Module_Base{
+class ModuleBase{
 
     companion object {
         const val DAYS_OF_WEEK = 7

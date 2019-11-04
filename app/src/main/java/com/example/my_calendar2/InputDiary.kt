@@ -31,7 +31,7 @@ import org.jetbrains.annotations.NotNull
 import kotlinx.android.synthetic.main.input_diary.*
 
 
-class input_diary : MainActivity() {
+class InputDiary : MainActivity() {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
