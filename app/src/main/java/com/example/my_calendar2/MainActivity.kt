@@ -3,8 +3,10 @@ package com.example.my_calendar2
 
 import android.content.Context
 import android.content.Intent
+import android.icu.text.Transliterator
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.GridView
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -26,15 +28,15 @@ open class MainActivity : AppCompatActivity() {
     fun initView() {
 
         scheduleRecyclerViewAdapter = RecyclerViewAdapter(this)
-
+//////////////////////////////////////////////////////////////////////////////
         rv_schedule.layoutManager =  GridLayoutManager(this, Module_Base.DAYS_OF_WEEK)
-        rv_schedule.adapter = scheduleRecyclerViewAdapter
         rv_schedule.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.HORIZONTAL))
         rv_schedule.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
+//////////////////////////////////////////////////////////////////////////////////////////////////
 
 
         rv_schedule.setOnClickListener{
-            var nextIntent:Intent=Intent(this,input_diary::class.java)
+            val nextIntent=Intent(this,input_diary::class.java)
             startActivity(nextIntent)
         }
 

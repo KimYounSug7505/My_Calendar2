@@ -10,13 +10,13 @@ class Module_Base{
         const val DAYS_OF_WEEK = 7
         const val LOW_OF_CALENDAR = 6
     }
-
+/////////////////////////////////////////////////////////////
     val calendar = Calendar.getInstance()
-
+//////////////////////////////////////////////////////////////
     var prevMonthTailOffset = 0
     var nextMonthHeadOffset = 0
     var currentMonthMaxDate = 0
-
+////////////////////////////////////////////////////////////////
     var data = arrayListOf<Int>()
 
     init {
@@ -28,7 +28,7 @@ class Module_Base{
         makeMonthDate(refreshCallback)
     }
 
-
+////////////////////////////////////////////////////////////////////////////////////
     fun changeToPrevMonth(refreshCallback: (Calendar) -> Unit) {
         if(calendar.get(Calendar.MONTH) == 0){
             calendar.set(Calendar.YEAR, calendar.get(Calendar.YEAR) - 1)
@@ -58,9 +58,10 @@ class Module_Base{
 
         currentMonthMaxDate = calendar.getActualMaximum(Calendar.DAY_OF_MONTH)
 
-        prevMonthTailOffset = calendar.get(Calendar.DAY_OF_WEEK) - 1
 
+        prevMonthTailOffset = calendar.get(Calendar.DAY_OF_WEEK) - 1
         makePrevMonthTail(calendar.clone() as Calendar)
+
         makeCurrentMonth(calendar)
 
         nextMonthHeadOffset = LOW_OF_CALENDAR * DAYS_OF_WEEK - (prevMonthTailOffset + currentMonthMaxDate)

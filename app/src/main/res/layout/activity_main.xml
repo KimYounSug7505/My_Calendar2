@@ -128,11 +128,12 @@
                 android:textStyle="bold" />
         </LinearLayout>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_schedule"
-            android:layout_width="348dp"
-            android:layout_height="300dp">
-
-        </androidx.recyclerview.widget.RecyclerView>
     </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_schedule"
+        android:layout_width="348dp"
+        android:layout_height="300dp">
+
+    </androidx.recyclerview.widget.RecyclerView>
 </LinearLayout>

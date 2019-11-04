@@ -4,6 +4,8 @@ package com.example.my_calendar2
 
 import android.view.LayoutInflater
 import android.view.View
+import android.widget.GridLayout
+import android.widget.GridView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.extensions.LayoutContainer
