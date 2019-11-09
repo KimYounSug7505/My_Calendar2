@@ -12,31 +12,30 @@ import java.util.*
 /**
  * Created by KimYounSug750 on 25/09/2019.
  */
-class RecyclerViewAdapter(val mainActivity: MainActivity) : RecyclerView.Adapter<ModuleHelper>() {
-
+class RecyclerViewAdapter(val mainActivity: SettingFragment) : RecyclerView.Adapter<ModuleHelper>() {
     val baseCalendar =ModuleBase()
     init {
         baseCalendar.initBaseCalendar {
             refreshView(it)
         }
     }
-/////////////////////////////////////////////////////////////////////////////////////////////////////item<textView>
+    /////////////////////////////////////////////////////////////////////////////////////////////////////item<textView>
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ModuleHelper {
         val view =LayoutInflater.from(parent.context).inflate(R.layout.item, parent, false)
         return ModuleHelper(view)/////item의 진정한 adapter(가상 공간에 start지점과 start주체 박아넣는역할)
-}
-//////////////////////////////////////////item의 갯수 결정///////////////////////////////////////////////
+    }
+    //////////////////////////////////////////item의 갯수 결정///////////////////////////////////////////////
     override fun getItemCount(): Int {
         return ModuleBase.LOW_OF_CALENDAR * ModuleBase.DAYS_OF_WEEK
     }
 
     override fun onBindViewHolder(holder: ModuleHelper, position: Int)  {
-
-        holder.containerView.setOnClickListener {
-            val nextIntent=Intent(mainActivity,InputDiary::class.java)
+       /* holder.containerView.setOnClickListener {
+            val nextIntent=Intent(MainActivity,InputDiary::class.java)/////////////////////////////////////
             mainActivity.startActivity(nextIntent)
-        }
 
+        }
+*/
         if (position % ModuleBase.DAYS_OF_WEEK == 0) holder.containerView.item_date.setTextColor(Color.parseColor("#ff1200"))
         else holder.containerView.item_date.setTextColor(Color.parseColor("#676d6e"))
 

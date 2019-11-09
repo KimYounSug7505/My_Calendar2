@@ -1,52 +1,56 @@
 package com.example.my_calendar2
 
-
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.recyclerview.widget.DividerItemDecoration
-import androidx.recyclerview.widget.GridLayoutManager
-import kotlinx.android.synthetic.main.activity_main.*
-import java.text.SimpleDateFormat
-import java.util.*
+import android.view.MenuItem
+import android.widget.Toast
+import androidx.annotation.NonNull
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 open class MainActivity : AppCompatActivity() {
 
-    lateinit var scheduleRecyclerViewAdapter: RecyclerViewAdapter
+    internal lateinit var fragment1: SettingFragment//먼슬리 아직 클래스 안 옮김
+    internal lateinit var fragment2:Fragment2//week
+    internal lateinit var fragment3: Fragment3 //세팅
 
-    override fun onCreate(savedInstanceState: Bundle?) {
+    override protected fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        initView()
-    }
+        fragment1 = SettingFragment()
+        fragment2=Fragment2()
+        fragment3 = Fragment3()
 
-    fun initView() {
+        supportFragmentManager.beginTransaction().replace(R.id.container, fragment1).commit()
 
-        scheduleRecyclerViewAdapter = RecyclerViewAdapter(this)
-//////////////////////////////////////////////////////////////////////////////
-        rv_schedule.layoutManager =  GridLayoutManager(this, ModuleBase.DAYS_OF_WEEK)
-        rv_schedule.adapter = scheduleRecyclerViewAdapter
-        rv_schedule.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.HORIZONTAL))
-        rv_schedule.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
-//////////////////////////////////////////////////////////////////////////////////////////////////
+        val bottomNavigation = findViewById<BottomNavigationView>(R.id.bottom_navigation)
+        bottomNavigation.setOnNavigationItemSelectedListener(object :
+            BottomNavigationView.OnNavigationItemSelectedListener {
+            override fun onNavigationItemSelected(@NonNull item: MenuItem): Boolean {
+                when (item.itemId) {
+                    R.id.tab1 -> {
+                        Toast.makeText(applicationContext, "첫 번째 탭 선택됨", Toast.LENGTH_LONG).show()
+                        supportFragmentManager.beginTransaction()
+                            .replace(R.id.container, fragment1).commit()
+                        return true
+                    }
+                    R.id.tab2->{
+                        Toast.makeText(applicationContext, "두 번째 탭 선택됨", Toast.LENGTH_LONG).show()
+                        supportFragmentManager.beginTransaction()
+                            .replace(R.id.container, fragment2).commit()
+                        return true
+                    }
+                    R.id.tab3 -> {
+                        Toast.makeText(applicationContext, "세 번째 탭 선택됨", Toast.LENGTH_LONG).show()
+                        supportFragmentManager.beginTransaction()
+                            .replace(R.id.container, fragment3).commit()
 
-        tv_prev_month.setOnClickListener {
-            scheduleRecyclerViewAdapter.changeToPrevMonth()
-        }
+                        return true
+                    }
+                }
 
-        tv_next_month.setOnClickListener {
-            scheduleRecyclerViewAdapter.changeToNextMonth()
-        }
-        tv_weekly.setOnClickListener{
-            var nextIntent:Intent= Intent(this,WeeklyCalendar::class.java)
-            startActivity(nextIntent)
-        }
-
-    }
-
-    fun refreshCurrentMonth(calendar: Calendar) {
-        val sdf = SimpleDateFormat("yyyy MM", Locale.KOREAN)
-        tv_current_month.text = sdf.format(calendar.time)
+                return false
+            }
+        })
     }
 }

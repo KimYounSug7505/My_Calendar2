@@ -1,6 +1,7 @@
 package com.example.my_calendar2
 
 
+
 import android.app.Activity
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -8,7 +9,7 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentStatePagerAdapter
-import kotlinx.android.synthetic.main.input_diary.*
+
 import java.util.ArrayList
 import androidx.core.app.ComponentActivity
 import androidx.core.app.ComponentActivity.ExtraData
@@ -25,10 +26,13 @@ import android.util.Log
 import android.widget.*
 import androidx.core.app.ActivityCompat.startActivityForResult
 import androidx.fragment.app.FragmentActivity
+import kotlinx.android.synthetic.main.input_diary.*
+import kotlinx.android.synthetic.main.input_diary.view.*
+import kotlinx.android.synthetic.main.input_diary.*
 import org.jetbrains.annotations.NotNull
 //import com.pedro.library.AutoPermissions
 
-import kotlinx.android.synthetic.main.input_diary.*
+
 
 
 class InputDiary : MainActivity() {
@@ -38,14 +42,17 @@ class InputDiary : MainActivity() {
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.input_diary)
+        val date=findViewById<View>(R.id.current_date)
         val image = findViewById<Button>(R.id.image)
         val search= findViewById<Button>(R.id.search)
         val inputText  = findViewById<EditText>(R.id.inputText)
         val imageView = findViewById<ImageView>(R.id.imageView)
 
+        date.inputText
+
         image.setOnClickListener {
             openGallery()
-          // AutoPermissions.Companion.loadAllPermissions(this, 101);
+            // AutoPermissions.Companion.loadAllPermissions(this, 101);
 
         }
 
