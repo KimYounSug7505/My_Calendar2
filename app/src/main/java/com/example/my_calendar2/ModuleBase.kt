@@ -38,8 +38,10 @@ class ModuleBase{
         }
         makeMonthDate(refreshCallback)
     }
+////////////////////////////////////////////////////////////////////////////////////////////////
+    fun makepickeddate(){
 
-
+    }//////////////////////////////////////////////////////////////////
     fun changeToNextMonth(refreshCallback: (Calendar) -> Unit) {
         if(calendar.get(Calendar.MONTH) == Calendar.DECEMBER){
             calendar.set(Calendar.YEAR, calendar.get(Calendar.YEAR) + 1)
@@ -90,4 +92,5 @@ class ModuleBase{
 
         for (i in 1..nextMonthHeadOffset) data.add(date++)
     }
+
 }

@@ -1,16 +1,15 @@
 package com.example.my_calendar2
 
 
-
 import android.app.Activity
+import android.app.DatePickerDialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentStatePagerAdapter
-
-import java.util.ArrayList
+import kotlinx.android.synthetic.main.input_diary.*
 import androidx.core.app.ComponentActivity
 import androidx.core.app.ComponentActivity.ExtraData
 import androidx.core.content.ContextCompat.getSystemService
@@ -23,16 +22,18 @@ import android.content.Intent
 import androidx.core.content.ContextCompat.getSystemService
 import android.icu.lang.UCharacter.GraphemeClusterBreak.T
 import android.util.Log
+import android.view.Window
+import android.view.WindowManager
 import android.widget.*
 import androidx.core.app.ActivityCompat.startActivityForResult
 import androidx.fragment.app.FragmentActivity
-import kotlinx.android.synthetic.main.input_diary.*
-import kotlinx.android.synthetic.main.input_diary.view.*
-import kotlinx.android.synthetic.main.input_diary.*
+import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.annotations.NotNull
 //import com.pedro.library.AutoPermissions
 
-
+import kotlinx.android.synthetic.main.input_diary.*
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 class InputDiary : MainActivity() {
@@ -42,17 +43,41 @@ class InputDiary : MainActivity() {
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.input_diary)
-        val date=findViewById<View>(R.id.current_date)
+
+        /*val secondintent:Intent=getIntent();
+
+        val YM =secondintent.getIntArrayExtra("YM")
+        val pickeddate =secondintent.getIntExtra("picked",0)
+        val sdf = SimpleDateFormat("yyyy MM", Locale.KOREAN)
+        val sdf1=SimpleDateFormat("zz", Locale.KOREAN)
+        current_Month.text = sdf.format(YM)
+        picked_date.text=sdf1.format(pickeddate)
+*/
+
         val image = findViewById<Button>(R.id.image)
         val search= findViewById<Button>(R.id.search)
         val inputText  = findViewById<EditText>(R.id.inputText)
         val imageView = findViewById<ImageView>(R.id.imageView)
 
-        date.inputText
+        val secondintent:Intent=getIntent();
+
+        val pickedYear =secondintent.getIntExtra("Y",0)
+        val pick_Y:String=pickedYear.toString()
+        current_YEAR.text=pick_Y
+
+        val pickedMonth =secondintent.getIntExtra("M",0)+1
+        val pick_M=pickedMonth.toString()
+        current_Month.text=pick_M
+
+        val pickeddate =secondintent.getIntExtra("picked",0)
+        val pick:String=pickeddate.toString()
+        picked_date.text=pick
+
+
 
         image.setOnClickListener {
             openGallery()
-            // AutoPermissions.Companion.loadAllPermissions(this, 101);
+          // AutoPermissions.Companion.loadAllPermissions(this, 101);
 
         }
 
